@@ -1,12 +1,6 @@
-public class NodeType {
-
-    public NodeType info;
-    public NodeType next;
-
-    public NodeType() {
-
-        info = null;
-        next = null;
-    } // consructor
-
-} // NodeType
+public class NodeType<
+ T extends Comparable<T>> {
+    public T info;
+    public NodeType<T> left;
+    public NodeType<T> right;
+} ;
