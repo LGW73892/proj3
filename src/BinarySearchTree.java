@@ -1,7 +1,8 @@
+
 public class BinarySearchTree<T extends Comparable<T>> {
 
-private NodeType<T> root;
-
+    private NodeType<T> root;
+    private boolean pp = false;
     // inserts the new root into the bst
     public void insert(T key){
 
@@ -45,7 +46,7 @@ private NodeType<T> root;
 
         } else {
 
-            System.out.println("The item already exists in the tree");
+            System.out.println("The item already exists in the tree.");
 
         }
     } // insertNodeHelper
@@ -94,7 +95,7 @@ private NodeType<T> root;
         if (node != null) {
 
             inOrderHelper(node.left);
-            System.out.println(node.info);
+            System.out.print(node.info + " ");
             inOrderHelper(node.right);
         }
 
@@ -192,23 +193,36 @@ private NodeType<T> root;
         return getNumLeafNodesHelper(node.left) + getNumLeafNodesHelper(node.right);
     } // getNumLeafNodesHelper
 
-    public int getSingleParent() {
+    public void getSingleParent() {
+        pp = false;
+        //int parents = getSingleParentHelper(root);
+        // return parents;
 
-        int parents = getSingleParentHelper(root);
-        return parents;
+        getSingleParentHelper(root);
+        if (pp != true) {
 
+            System.out.println("None");
+
+        }
     } // getSingleParent
 
-    private int getSingleParentHelper(NodeType<T> node) {
+    private void getSingleParentHelper(NodeType<T> node) {
 
         if (node == null) {
-            return 0;
+
+            return;
         }
         if (node.left == null && node.right != null || node.right == null && node.left != null) {
-            return 1;
+
+            System.out.print(node.info + " ");
+            pp = true;
+            return;
         }
 
-        return getSingleParentHelper(node.left) + getSingleParentHelper(node.right);
+
+
+        getSingleParentHelper(node.left);
+        getSingleParentHelper(node.right);
     } // getSingleParentHelper
 
 
@@ -230,13 +244,15 @@ private NodeType<T> root;
 
     if (level == 2) {
 
-        if (node.left != null && node.left != parent) {
+        if (node.left != null && node.left != parent && !node.left.info.equals(key)
+        && (node.left != parent.left && node.left != parent.right)) {
 
             System.out.print(node.left.info + " ");
 
         }
 
-        if (node.right != null && node.right != parent) {
+        if (node.right != null && node.right != parent && !node.right.info.equals(key)
+        && (node.left != parent.left && node.left != parent.right)) {
 
             System.out.print(node.right.info + " ");
         }
