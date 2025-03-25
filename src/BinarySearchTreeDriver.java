@@ -7,7 +7,7 @@ import java.util.Scanner;
  * The Binary Tree driver class provides the scanner and user inupt portions of
  * the project and makes calls to DoublyLinkedList
  */
-public class BinaryTreeDriver {
+public class BinarySearchTreeDriver {
 
     private static boolean found = false; // used to determine when to output "none"
 
