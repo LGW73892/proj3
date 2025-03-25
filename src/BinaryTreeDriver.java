@@ -4,12 +4,12 @@ import java.io.IOException;
 import java.util.Scanner;
 
 /**
- * The linked list driver class provides the scanner and user inupt portions of
+ * The Binary Tree driver class provides the scanner and user inupt portions of
  * the project and makes calls to DoublyLinkedList
  */
 public class BinaryTreeDriver {
 
-    private static boolean found = false;
+    private static boolean found = false; // used to determine when to output "none"
 
     /**
      * main method is what prompts the user and provides the desired output
@@ -191,6 +191,7 @@ public class BinaryTreeDriver {
         tree.delete(itemParsed);
     }
 
+    // Generic method to find cousins safely
     private static <T extends Comparable<T>> void genericCousin(BinarySearchTree<T> tree,
    String value, String type) {
 
@@ -199,6 +200,7 @@ public class BinaryTreeDriver {
 
     } // genericCousin
 
+        // Generic method to search safely
     private static <T extends Comparable<T>> void genericSearch(BinarySearchTree<T> tree,
    String value, String type) {
 
@@ -207,6 +209,7 @@ public class BinaryTreeDriver {
 
       }
 
+    // is what allows the other generic functions to function
     private static <T extends Comparable<T>> T parseGeneric(String item, String type) {
         if (type.equals("i")) {
             return (T) (Comparable<?>) Integer.valueOf(item);
