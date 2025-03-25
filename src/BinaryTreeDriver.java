@@ -64,51 +64,68 @@ public class BinaryTreeDriver {
         System.out.println("(q)  - Quit program");
 
         String str = "";
+        String gType = "";
+
+
+        if (dataType.equals("s")) {
+
+            gType = "string";
+
+        } else if (dataType.equals("d")) {
+
+            gType = "number";
+
+        } else {
+
+            gType = "number";
+
+        } // else
+
         while (str != "q") {
             System.out.print("Enter a command: ");
             str = scan.nextLine();
 
             if (str.equals("i")) { // insert
 
-                System.out.println("In-order: ");
+                System.out.print("In-order: ");
                 tree.inOrder();
                 System.out.println("");
 
-                System.out.print("Enter a number to insert: ");
+                System.out.print("Enter a " + gType  +" to insert: ");
                 String item = scan.nextLine();
 
                 insertToList(tree,item,dataType);
 
-                System.out.println("In-order: ");
+                System.out.print("In-order: ");
                 tree.inOrder();
                 System.out.println("");
 
             } else if (str.equals("d")) { // delete
-                System.out.println("In-order: ");
+                System.out.print("In-order: ");
                 tree.inOrder();
                 System.out.println("");
-                System.out.print("Enter a number to delete: ");
+                System.out.print("Enter a " + gType  + " to delete: ");
                 String item = scan.nextLine();
                 deleteFromList(tree, item, dataType);
                 if(tree != null) {
-                    System.out.println("In-order: ");
+                    System.out.print("In-order: ");
                     tree.inOrder();
                     System.out.println("");
                 } // if
 
             } else if (str.equals("p")) { // print
 
-                System.out.println("In-order: ");
+                System.out.print("In-order: ");
                 tree.inOrder();
                 System.out.println("");
 
 
             } else if (str.equals("s")) { //search
 
-                System.out.println("In-order: ");
+                System.out.print("In-order: ");
                 tree.inOrder();
                 System.out.println("");
-                System.out.print("Enter a number to search: ");
+                System.out.print("Enter a " + gType + " to search: ");
                 String item = scan.nextLine();
                 genericSearch(tree, item, dataType);
 
@@ -137,17 +154,18 @@ public class BinaryTreeDriver {
 
             } else if (str.equals("c")) { // cousin
 
-                System.out.println("In-order: ");
+                System.out.print("In-order: ");
                 tree.inOrder();
                 System.out.println("");
 
-                System.out.print("Enter a number: ");
+                System.out.print("Enter a " + gType + ": ");
                 String item = scan.nextLine();
                 System.out.println("");
 
                 System.out.print(item);
                 System.out.print(" cousins: ");
                 genericCousin(tree,item,dataType );
+                System.out.println("");
 
                 } else if (str.equals("q")) { //quit
 
