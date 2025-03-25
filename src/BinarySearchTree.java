@@ -1,9 +1,12 @@
-
 public class BinarySearchTree<T extends Comparable<T>> {
 
     private NodeType<T> root;
     private boolean pp = false;
-    // inserts the new root into the bst
+
+    /**
+     * this method inserts the new root into the binary search tree
+     * @param T key is the item in the node which is generic
+     */
     public void insert(T key){
 
         if (this.root == null) {
@@ -17,7 +20,11 @@ public class BinarySearchTree<T extends Comparable<T>> {
         }
     } // insert
 
-    // helper function that simplifies the recursive calls
+    /**
+     * helper function that simplifies the recursive calls for insert
+     * @param key is the item in the node
+     * @param root is the node itself
+     */
     private void insertNodeHelper(T key, NodeType<T> node){
 
 
@@ -54,14 +61,22 @@ public class BinarySearchTree<T extends Comparable<T>> {
 
 
 
-
+    /**
+     * searches for the item within the binary search tree
+     * @item is what we are searching for
+     */
     public boolean search(T item) {
 
         return searchHelper(root, item);
 
     } // search
 
-    // helps with recursion
+    /**
+     *
+     * this method helps with recursion for search
+     * @param node is the node
+     * @param item is what we are searching for
+     */
     private boolean searchHelper(NodeType<T> node, T item){
 
         if (node == null) {
@@ -84,12 +99,20 @@ public class BinarySearchTree<T extends Comparable<T>> {
 
     } // searchHelper
 
+    /**
+     * this method displays the binary search tree in order
+     */
     public void inOrder() {
 
         inOrderHelper(root);
 
     } // inOrder
 
+
+    /**
+     * this is a helper method for the inOrder method
+     * @param node is nodes are are being sorted
+     */
     private void inOrderHelper(NodeType<T> node) {
 
         if (node != null) {
@@ -101,6 +124,10 @@ public class BinarySearchTree<T extends Comparable<T>> {
 
     } // inOrderHelper
 
+    /**
+     * The delete method deletes the node in a binary search tree
+     * @param key is a generic item that is used to find the node to delete
+     */
     public void delete(T key) {
 
         if (search(key) == true) {
@@ -113,6 +140,12 @@ public class BinarySearchTree<T extends Comparable<T>> {
         }
     } // delete
 
+
+    /**
+     * this method is a helper for the delete method
+     * @param node is the traverse through the binary search tree
+     * @param key is what we are trying to delete
+     */
     private NodeType<T> deleteHelper(NodeType<T> node, T key) {
 
         if (node == null) {
@@ -149,6 +182,11 @@ public class BinarySearchTree<T extends Comparable<T>> {
         return node;
     } // deleteHelper
 
+
+    /**
+     * successor is a helper method that is used in the delete helper method
+     * @param node is used to traverse through the binary search tree
+     */
     private T successor(NodeType<T> node) {
 
         node = node.right;
@@ -161,6 +199,11 @@ public class BinarySearchTree<T extends Comparable<T>> {
         return node.info;
     }
 
+
+    /**
+     * predeccessor is a helper method that is used in the delete helper method
+     * @param node is used to traverse through the binary search tree
+     */
     private T predecessor(NodeType<T> node) {
 
         node = node.left;
@@ -173,6 +216,10 @@ public class BinarySearchTree<T extends Comparable<T>> {
         return node.info;
     }
 
+    /**
+     * this returns the amount of leaf nodes in the binary search tree
+     *
+     */
     public int getNumLeafNodes() {
 
         int leaves = getNumLeafNodesHelper(root);
@@ -181,6 +228,10 @@ public class BinarySearchTree<T extends Comparable<T>> {
 
     } // getNumLeafNodes
 
+    /**
+     * helper method for the getNumLeafNodes
+     * @param node used for traversal through the binary search tree
+     */
     private int getNumLeafNodesHelper(NodeType<T> node) {
 
         if (node == null) {
@@ -193,6 +244,11 @@ public class BinarySearchTree<T extends Comparable<T>> {
         return getNumLeafNodesHelper(node.left) + getNumLeafNodesHelper(node.right);
     } // getNumLeafNodesHelper
 
+
+    /**
+     * getSingleParent method finds and prints teh singleParents within the binary search tree
+     *
+     */
     public void getSingleParent() {
         pp = false;
         //int parents = getSingleParentHelper(root);
@@ -206,6 +262,10 @@ public class BinarySearchTree<T extends Comparable<T>> {
         }
     } // getSingleParent
 
+    /**
+     * this is a helper method for the gsph method and prints out the items
+     * @param node is used to traverse and find the parent nodes
+     */
     private void getSingleParentHelper(NodeType<T> node) {
 
         if (node == null) {
@@ -225,7 +285,10 @@ public class BinarySearchTree<T extends Comparable<T>> {
         getSingleParentHelper(node.right);
     } // getSingleParentHelper
 
-
+    /**
+     * finds the cousins of the nodes in the binary search tree
+     * @param key is what we are finding the cousins of
+     */
     public void getCousin(T key) {
 
         int level = treeLevel(root, key, 1);
@@ -235,6 +298,13 @@ public class BinarySearchTree<T extends Comparable<T>> {
 
     } // getCousin
 
+    /**
+     * helper method for the getCousin method
+     * @param node is used to traverse and find the cousin
+     * @param key is used to identify the node we are comparing and finding the cousin of
+     * @param is the levels within the binary search trees as an index to traverse and find cousins
+     * @param is the parent node used to find the cousins
+     */
     private void getCousinHelper(NodeType<T> node, T key, int level, NodeType<T> parent) {
 
         if (node == null || level < 2) {
@@ -269,7 +339,12 @@ public class BinarySearchTree<T extends Comparable<T>> {
 
 
 
-
+    /**
+     * determines the level of the item in the binary tree
+     * @param node is used to traverse and find the cousin
+     * @param key is what we are looking for the cousin of
+     * @param is the level in which you are on teh binary search tree
+     */
     private int treeLevel (NodeType<T> node, T key, int level ) {
 
         if (node == null) {
@@ -292,6 +367,9 @@ public class BinarySearchTree<T extends Comparable<T>> {
 
     } // treeLevel
 
+    /**
+     * Helper method of the cousin method used to determin the parent
+     */
     private NodeType<T> getParent(NodeType<T> node, T key) {
 
         if (node == null || (node.left == null && node.right == null)) {
